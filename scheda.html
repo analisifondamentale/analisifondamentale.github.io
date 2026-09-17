@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Societaria | Prof. Francesco Digregorio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        .navbar { background-color: #0b1c2c; }
+        .box-dati { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; border-top: 4px solid #0056b3;}
+    </style>
+</head>
+<body>
 
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fw-bold" href="index.html">FRANCESCO DIGREGORIO <span style="color:#0056b3;">| RESEARCH</span></a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="bilanci.html">← Torna alla Ricerca Aziende</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="fw-bold" style="color: #0b1c2c;" id="company-name">Caricamento...</h1>
+            <span class="badge bg-primary fs-5 px-3 py-2" id="company-ticker">...</span>
+        </div>
+
+        <div class="row">
+            <!-- Colonna 1: Analisi del Professore -->
+            <div class="col-lg-4">
+                <div class="box-dati h-100">
+                    <h4 class="fw-bold text-primary mb-3">Nota Operativa</h4>
+                    <p class="text-muted small"><strong>Area Riservata Docente / Revisore:</strong> I dati finanziari interattivi sulla destra e in basso sono estratti in tempo reale dai flussi ufficiali. Utilizza questi dati per le analisi di bilancio o per integrare i concetti di finanza aziendale discussi nelle pubblicazioni.</p>
+                </div>
+            </div>
+
+            <!-- Colonna 2: Grafico Avanzato Dinamico -->
+            <div class="col-lg-8">
+                <div class="box-dati p-0" style="height: 450px; overflow: hidden;" id="chart-container">
+                    <!-- Il grafico viene iniettato da Javascript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Dati di Bilancio Dinamica -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="box-dati p-0" style="height: 750px; overflow: hidden;" id="financials-container">
+                    <!-- I bilanci vengono iniettati da Javascript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT: Sistema dinamico di routing -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const ticker = urlParams.get('ticker') || 'MIL:ISP'; // Default Intesa se non trova nulla
+        const nome = urlParams.get('nome') || 'Intesa Sanpaolo';
+
+        document.getElementById('company-name').textContent = nome;
+        document.getElementById('company-ticker').textContent = ticker.replace('MIL:', 'Borsa Italiana: ');
+        document.title = nome + " | Analisi Dati";
+
+        // Inietta Grafico
+        const chartScript = document.createElement('script');
+        chartScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+        chartScript.async = true;
+        chartScript.innerHTML = JSON.stringify({
+            "autosize": true,
+            "symbol": ticker,
+            "interval": "D",
+            "timezone": "Europe/Rome",
+            "theme": "light",
+            "style": "1",
+            "locale": "it",
+            "hide_top_toolbar": true
+        });
+        document.getElementById('chart-container').appendChild(chartScript);
+
+        // Inietta Bilanci
+        const finScript = document.createElement('script');
+        finScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-financials.js';
+        finScript.async = true;
+        finScript.innerHTML = JSON.stringify({
+            "colorTheme": "light",
+            "isTransparent": true,
+            "largeChartUrl": "",
+            "displayMode": "regular",
+            "width": "100%",
+            "height": "100%",
+            "symbol": ticker,
+            "locale": "it"
+        });
+        document.getElementById('financials-container').appendChild(finScript);
+    </script>
+</body>
+</html>
