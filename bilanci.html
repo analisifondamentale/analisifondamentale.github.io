@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilanci Aziende Quotate | Prof. Francesco Digregorio</title>
+    <title>Ricerca Bilanci | Prof. Francesco Digregorio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #f4f6f9; font-family: 'Segoe UI', Tahoma, sans-serif;}
         .navbar { background-color: #0b1c2c; }
         .table-hover tbody tr:hover { background-color: #e9ecef; }
         .search-box { max-width: 400px; margin-bottom: 20px; }
+        .disclaimer-box { border-left: 4px solid #ffc107; background: #fff3cd; padding: 15px; border-radius: 5px; margin-bottom: 25px; font-size: 0.9rem;}
     </style>
 </head>
 <body>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container-fluid px-4">
             <a class="navbar-brand fw-bold" href="index.html">FRANCESCO DIGREGORIO <span style="color:#0056b3;">| RESEARCH</span></a>
@@ -26,34 +28,71 @@
         </div>
     </nav>
 
+    <!-- Contenuto -->
     <div class="container my-5">
-        <h2 class="mb-4" style="color: #0b1c2c; border-bottom: 2px solid #0056b3; padding-bottom: 10px;">Analisi Bilanci Società Quotate (FTSE MIB)</h2>
-        <p>Ricerca e seleziona una società per visualizzare i documenti contabili, il conto economico e lo stato patrimoniale.</p>
+        <h2 class="mb-4" style="color: #0b1c2c; border-bottom: 2px solid #0056b3; padding-bottom: 10px;">Archivio Bilanci Società Quotate (FTSE MIB)</h2>
+        
+        <div class="disclaimer-box">
+            <strong>Nota del Docente:</strong> Per garantire la massima qualità e profondità analitica (Calcolo del Fair Value, DCF e Modelli di Pricing), i link sottostanti rimandano al database istituzionale di <i>Evaluation.it</i>. Le schede si apriranno in una nuova scheda sicura.
+        </div>
+
+        <p>Cerca la società che desideri analizzare:</p>
 
         <!-- Barra di ricerca -->
         <input type="text" id="cercaAzienda" onkeyup="filtraTabella()" class="form-control search-box shadow-sm" placeholder="🔍 Cerca una società (es. Eni, Campari)...">
 
+        <!-- Tabella Link Esterni -->
         <div class="card shadow-sm mt-4">
             <div class="card-body p-0">
                 <table class="table table-striped table-hover mb-0" id="tabellaAziende">
                     <thead class="table-dark">
                         <tr>
                             <th>Società</th>
-                            <th>Settore</th>
+                            <th>Settore Operativo</th>
                             <th>Azione</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="fw-bold">A2A S.p.A.</td><td>Utility</td><td><a href="scheda.html?ticker=MIL:A2A&nome=A2A+S.p.A." class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">Assicurazioni Generali</td><td>Assicurativo</td><td><a href="scheda.html?ticker=MIL:G&nome=Assicurazioni+Generali" class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">Davide Campari-Milano</td><td>Food & Beverage</td><td><a href="scheda.html?ticker=MIL:CPR&nome=Davide+Campari-Milano" class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">Enel S.p.A.</td><td>Utility / Energia</td><td><a href="scheda.html?ticker=MIL:ENEL&nome=Enel+S.p.A." class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">Eni S.p.A.</td><td>Energia / Oil & Gas</td><td><a href="scheda.html?ticker=MIL:ENI&nome=Eni+S.p.A." class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">Ferrari N.V.</td><td>Automotive</td><td><a href="scheda.html?ticker=MIL:RACE&nome=Ferrari+N.V." class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">Intesa Sanpaolo</td><td>Bancario</td><td><a href="scheda.html?ticker=MIL:ISP&nome=Intesa+Sanpaolo" class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">Leonardo S.p.A.</td><td>Aerospazio / Difesa</td><td><a href="scheda.html?ticker=MIL:LDO&nome=Leonardo+S.p.A." class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">Stellantis N.V.</td><td>Automotive</td><td><a href="scheda.html?ticker=MIL:STLAM&nome=Stellantis+N.V." class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
-                        <tr><td class="fw-bold">UniCredit S.p.A.</td><td>Bancario</td><td><a href="scheda.html?ticker=MIL:UCG&nome=UniCredit+S.p.A." class="btn btn-sm btn-primary">Vedi Bilanci</a></td></tr>
+                        <tr>
+                            <td class="fw-bold">A2A S.p.A.</td><td>Utility</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/a2a/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Assicurazioni Generali</td><td>Assicurativo</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/assicurazioni-generali/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Davide Campari-Milano</td><td>Food & Beverage</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/campari/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Enel S.p.A.</td><td>Utility / Energia</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/enel/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Eni S.p.A.</td><td>Energia / Oil & Gas</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/eni/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Ferrari N.V.</td><td>Automotive</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/ferrari/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Intesa Sanpaolo</td><td>Bancario</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/intesa-sanpaolo/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Leonardo S.p.A.</td><td>Aerospazio / Difesa</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/leonardo/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Stellantis N.V.</td><td>Automotive</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/stellantis/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">UniCredit S.p.A.</td><td>Bancario</td>
+                            <td><a href="https://www.evaluation.it/aziende/bilanci-aziende/unicredit/" target="_blank" class="btn btn-sm btn-outline-primary">Vedi Scheda Analisi ↗</a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
