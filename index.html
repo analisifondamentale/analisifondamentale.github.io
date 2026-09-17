@@ -3,145 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prof. Francesco Digregorio | Azioni Italia e Analisi Finanziaria</title>
+    <title>Prof. Francesco Digregorio | Finanza, Mercati e Analisi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; }
-        .navbar { background-color: #0b1c2c; }
-        .navbar-brand, .nav-link { color: #ffffff !important; }
-        .hero-section { background-color: #122840; color: white; padding: 40px 0; border-bottom: 4px solid #0056b3; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f9f9f9; color: #1d1d1d; }
         
-        /* Stili Vetrina Libro */
-        .book-spotlight { background: linear-gradient(135deg, #ffffff 0%, #f0f2f5 100%); border: 1px solid #e1e4e8; border-radius: 12px; padding: 35px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 8px solid #0056b3; margin: 30px 0; }
-        .btn-amazon { background-color: #FF9900; color: #000; font-weight: bold; border: 1px solid #a88734; border-radius: 6px; padding: 12px 25px; transition: background-color 0.2s; text-decoration: none; display: inline-block; }
+        /* Navbar stile portale finanziario */
+        .navbar { background-color: #7b1fa2; /* Colore istituzionale in stile Yahoo/Finanza */ }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        .nav-link:hover { color: #f0f0f0 !important; text-decoration: underline; }
+        
+        /* Box superiore degli Indici */
+        .top-indices { background-color: #fff; border-bottom: 1px solid #e0e4e9; margin-bottom: 20px; }
+        
+        /* Layout a due colonne */
+        .feed-column { background-color: transparent; }
+        .sidebar-column { background-color: transparent; }
+        
+        /* Notizia Principale (Il tuo Libro) */
+        .main-story { background-color: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #e0e4e9; display: flex; flex-direction: column; }
+        .main-story-img { background: linear-gradient(135deg, #0b1c2c 0%, #1e3c72 100%); color: white; padding: 40px 20px; text-align: center; }
+        .main-story-content { padding: 25px; }
+        .main-story-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 15px; color: #000; line-height: 1.2; }
+        .btn-amazon { background-color: #FF9900; color: #000; font-weight: bold; border: 1px solid #a88734; border-radius: 4px; padding: 10px 20px; text-decoration: none; display: inline-block; transition: 0.2s; }
         .btn-amazon:hover { background-color: #e38900; color: #000; }
         
-        .section-title { color: #0b1c2c; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
+        /* Intestazioni sezioni */
+        .section-header { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid #7b1fa2; padding-bottom: 5px; display: inline-block; }
+        
+        /* Widget Box */
+        .widget-box { background: #fff; border: 1px solid #e0e4e9; border-radius: 8px; overflow: hidden; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Navbar Principale -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid px-4">
-            <a class="navbar-brand fw-bold" href="index.html">FRANCESCO DIGREGORIO <span style="color:#0056b3;">| RESEARCH</span></a>
+            <a class="navbar-brand fw-bold fs-4" href="index.html">Francesco Digregorio <span class="fw-light">Finanza</span></a>
             <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#azioni-italia">Azioni Italia</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold text-warning" href="bilanci.html">Dati & Bilanci Aziende</a></li>
+                <ul class="navbar-nav ms-4">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#news">Ultime Notizie</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mercati">Mercati</a></li>
+                    <!-- Link al listino bilanci -->
+                    <li class="nav-item ms-lg-4"><a class="nav-link fw-bold text-warning" href="bilanci.html">📊 Archivio Bilanci (FTSE MIB)</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Ticker: 40 Titoli FTSE MIB -->
-    <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-        {
-        "symbols": [
-            { "proName": "MIL:FTSEMIB", "title": "FTSE MIB" },
-            { "proName": "MIL:ISP", "title": "Intesa Sanpaolo" },
-            { "proName": "MIL:UCG", "title": "UniCredit" },
-            { "proName": "MIL:ENEL", "title": "Enel" },
-            { "proName": "MIL:ENI", "title": "Eni" },
-            { "proName": "MIL:STLAM", "title": "Stellantis" },
-            { "proName": "MIL:RACE", "title": "Ferrari" },
-            { "proName": "MIL:STM", "title": "STMicroelectronics" },
-            { "proName": "MIL:G", "title": "Ass. Generali" },
-            { "proName": "MIL:PRY", "title": "Prysmian" },
-            { "proName": "MIL:MONC", "title": "Moncler" },
-            { "proName": "MIL:TRN", "title": "Terna" },
-            { "proName": "MIL:SRG", "title": "Snam" },
-            { "proName": "MIL:PST", "title": "Poste Italiane" },
-            { "proName": "MIL:LDO", "title": "Leonardo" },
-            { "proName": "MIL:MB", "title": "Mediobanca" },
-            { "proName": "MIL:TEN", "title": "Tenaris" },
-            { "proName": "MIL:CPR", "title": "Campari" },
-            { "proName": "MIL:FBK", "title": "FinecoBank" },
-            { "proName": "MIL:BAMI", "title": "Banco BPM" },
-            { "proName": "MIL:REC", "title": "Recordati" },
-            { "proName": "MIL:AMP", "title": "Amplifon" },
-            { "proName": "MIL:INW", "title": "Inwit" },
-            { "proName": "MIL:PIRC", "title": "Pirelli & C." },
-            { "proName": "MIL:A2A", "title": "A2A" },
-            { "proName": "MIL:BPE", "title": "BPER Banca" },
-            { "proName": "MIL:HER", "title": "Hera" },
-            { "proName": "MIL:IG", "title": "Italgas" },
-            { "proName": "MIL:AZM", "title": "Azimut Holding" },
-            { "proName": "MIL:BGN", "title": "Banca Generali" },
-            { "proName": "MIL:BMPS", "title": "MPS" },
-            { "proName": "MIL:BMED", "title": "Banca Mediolanum" },
-            { "proName": "MIL:BZU", "title": "Buzzi Unicem" },
-            { "proName": "MIL:DIA", "title": "Diasorin" },
-            { "proName": "MIL:ERG", "title": "ERG" },
-            { "proName": "MIL:IP", "title": "Interpump" },
-            { "proName": "MIL:NEXI", "title": "Nexi" },
-            { "proName": "MIL:TIT", "title": "Telecom Italia" },
-            { "proName": "MIL:UNI", "title": "Unipol" }
-        ],
-        "showSymbolLogo": true,
-        "colorTheme": "dark",
-        "displayMode": "adaptive",
-        "locale": "it"
-        }
-        </script>
+    <!-- Barra degli Indici (Cards Superiori) -->
+    <div class="top-indices py-2">
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+            {
+            "symbols": [
+                { "proName": "MIL:FTSEMIB", "title": "FTSE MIB" },
+                { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+                { "proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100" },
+                { "proName": "FX_IDC:EURUSD", "title": "EUR/USD" },
+                { "proName": "TVC:USOIL", "title": "Petrolio WTI" }
+            ],
+            "colorTheme": "light",
+            "isTransparent": true,
+            "showSymbolLogo": true,
+            "locale": "it"
+            }
+            </script>
+        </div>
     </div>
 
-    <!-- Header Profilo -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-5 fw-bold">Quotazioni e Azioni Italia</h1>
-            <p class="lead mt-2 fw-light">Prof. Francesco Digregorio | Dottore Commercialista e Revisore dei Conti</p>
-        </div>
-    </section>
+    <!-- Layout a Due Colonne (Feed Notizie + Dati Mercato) -->
+    <div class="container-fluid px-4 mb-5">
+        <div class="row">
+            
+            <!-- COLONNA SINISTRA (70%): Notizie e Editoriali -->
+            <div class="col-lg-8 feed-column">
+                
+                <!-- Notizia di Copertina (Il Libro) -->
+                <article class="main-story">
+                    <div class="row g-0">
+                        <div class="col-md-5 main-story-img d-flex flex-column justify-content-center align-items-center">
+                            <h5 class="text-warning mb-3">L'Analisi dell'Esperto</h5>
+                            <h1 style="font-size: 5rem; margin:0;">📉📊</h1>
+                        </div>
+                        <div class="col-md-7 main-story-content">
+                            <span class="badge bg-danger mb-2">Editoriale / Saggio</span>
+                            <h2 class="main-story-title">"Il banco vince sempre: fate pure il vostro gioco?"</h2>
+                            <p class="text-muted">Il Prof. Francesco Digregorio, Dottore Commercialista e Revisore dei Conti, smonta i bias cognitivi legati alla percezione del rischio. Un'analisi rigorosa su come le logiche matematiche e le probabilità influenzino le scelte nei mercati finanziari e nell'economia reale.</p>
+                            <a href="https://www.amazon.it/BANCO-VINCE-SEMPRE-VOSTRO-GIOCO-ebook/dp/B0FWD5X8YP/" target="_blank" class="btn-amazon mt-2">
+                                Acquista il libro su Amazon ↗
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-    <div class="container my-4">
-        
-        <!-- VETRINA LIBRO IN EVIDENZA -->
-        <div class="book-spotlight">
-            <div class="row align-items-center">
-                <div class="col-lg-9">
-                    <span class="badge bg-danger mb-2 px-3 py-2">Libro in Primo Piano</span>
-                    <h3 class="fw-bold mb-2" style="color:#0b1c2c;">"IL BANCO VINCE SEMPRE: FATE PURE IL VOSTRO GIOCO?"</h3>
-                    <p class="text-muted mb-3">Un'analisi rigorosa sulle scelte economiche, la percezione del rischio e i bias cognitivi nei mercati finanziari e nel gioco. Strumenti matematici applicati alle decisioni reali.</p>
-                    <a href="https://www.amazon.it/BANCO-VINCE-SEMPRE-VOSTRO-GIOCO-ebook/dp/B0FWD5X8YP/?_encoding=UTF8&pd_rd_w=CYKzk&content-id=amzn1.sym.aeba7836-5f3c-4e53-8ac7-7c64ca90b67b&pf_rd_p=aeba7836-5f3c-4e53-8ac7-7c64ca90b67b&pf_rd_r=258-4587962-4900834&pd_rd_wg=aUTMR&pd_rd_r=f2cf8d0d-d445-427b-afd5-f23b12595b26" target="_blank" class="btn-amazon shadow-sm">
-                        🛒 Acquista il libro su Amazon
-                    </a>
+                <!-- Feed Notizie Finanziarie (Reali, tramite Widget) -->
+                <h3 class="section-header mt-4" id="news">Ultime Notizie Economiche (Italia)</h3>
+                <div class="widget-box" style="height: 600px;">
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                        {
+                        "feedMode": "market",
+                        "market": "italy",
+                        "colorTheme": "light",
+                        "isTransparent": false,
+                        "displayMode": "regular",
+                        "width": "100%",
+                        "height": "100%",
+                        "locale": "it"
+                        }
+                        </script>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- TABELLA AZIONI ITALIA (Stile Investing / Listino Completo) -->
-        <h3 class="section-title" id="azioni-italia">Azioni Italia - Quotazioni e Performance</h3>
-        <p class="text-muted mb-3">Tabella interattiva dei titoli azionari italiani con variazioni percentuali, volumi e prezzi aggiornati.</p>
-        
-        <div style="height: 650px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-            <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
-                {
-                "width": "100%",
-                "height": "100%",
-                "defaultColumn": "overview",
-                "defaultScreen": "general",
-                "market": "italy",
-                "showToolbar": true,
-                "colorTheme": "light",
-                "locale": "it"
-                }
-                </script>
+            </div>
+
+            <!-- COLONNA DESTRA (30%): Watchlist e Dati -->
+            <div class="col-lg-4 sidebar-column">
+                
+                <!-- Box Profilo Professionista -->
+                <div class="widget-box p-4 bg-light text-center">
+                    <h5 class="fw-bold mb-1">Prof. Francesco Digregorio</h5>
+                    <p class="text-muted small mb-3">Docente ITE A. Tambosi | Dott. Commercialista</p>
+                    <a href="bilanci.html" class="btn btn-outline-dark btn-sm w-100 fw-bold">Vai all'Archivio Bilanci Italiani</a>
+                </div>
+
+                <!-- I Titoli più Caldi (Top Gainers/Losers) -->
+                <h3 class="section-header mt-2" id="mercati">Titoli in Evidenza</h3>
+                <div class="widget-box" style="height: 450px;">
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
+                        {
+                        "colorTheme": "light",
+                        "dateRange": "12M",
+                        "exchange": "Borsa Italiana",
+                        "showChart": true,
+                        "locale": "it",
+                        "width": "100%",
+                        "height": "100%",
+                        "isTransparent": false,
+                        "showSymbolLogo": true,
+                        "showFloatingTooltip": false,
+                        "largeChartUrl": ""
+                        }
+                        </script>
+                    </div>
+                </div>
+
+                <!-- Mini Grafico del Mercato Italiano -->
+                <h3 class="section-header mt-4">Andamento FTSE MIB</h3>
+                <div class="widget-box" style="height: 300px;">
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                        {
+                        "symbol": "MIL:FTSEMIB",
+                        "width": "100%",
+                        "height": "100%",
+                        "locale": "it",
+                        "dateRange": "1M",
+                        "colorTheme": "light",
+                        "isTransparent": false,
+                        "autosize": true,
+                        "largeChartUrl": ""
+                        }
+                        </script>
+                    </div>
+                </div>
+
             </div>
         </div>
-        
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p class="mb-0">&copy; 2026 Prof. Francesco Digregorio | Dottore Commercialista e Revisore dei Conti</p>
+    <footer class="bg-dark text-white text-center py-4 mt-3">
+        <p class="mb-0">&copy; 2026 Francesco Digregorio | Portale Analisi Economico-Finanziaria</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
