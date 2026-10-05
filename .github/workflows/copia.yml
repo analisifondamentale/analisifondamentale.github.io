@@ -1,0 +1,36 @@
+name: Copia evaluation
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  copia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scarica il sito
+        run: |
+          mkdir -p /tmp/dl && cd /tmp/dl
+          wget --mirror --convert-links --adjust-extension --page-requisites --no-parent --wait=1 --random-wait https://www.evaluation.it/ || true
+
+      - name: Sostituisci il dominio
+        run: |
+          cd /tmp/dl/www.evaluation.it
+          grep -rlI 'evaluation.it' . | xargs -r sed -i 's#https\?://www\.evaluation\.it#https://analisifondamentale.github.io#g; s#//www\.evaluation\.it#//analisifondamentale.github.io#g'
+          touch .nojekyll
+
+      - name: Sostituisci il contenuto del repository
+        run: |
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.github' -exec rm -rf {} +
+          cp -r /tmp/dl/www.evaluation.it/. .
+
+      - name: Salva su GitHub
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Copia statica del sito" || echo "Nessuna modifica"
+          git push
